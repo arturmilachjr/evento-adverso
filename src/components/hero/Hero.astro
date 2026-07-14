@@ -1,0 +1,102 @@
+---
+import Capno from '@/components/Capno.astro';
+import HeroCena from '@/components/hero/HeroCena';
+---
+
+<section class="hero">
+  <img
+    class="poster"
+    src="/hero-poster.webp"
+    alt=""
+    aria-hidden="true"
+    width="1440"
+    height="810"
+    decoding="async"
+  />
+  <div class="cena">
+    <HeroCena client:idle />
+  </div>
+
+  <div class="container conteudo">
+    <p class="mono eyebrow">Medicina · Sistemas · Escrita</p>
+    <h1>Artur <span class="acento">Milach</span></h1>
+    <p class="triade">
+      Anestesiologista <span class="sep">·</span> Segurança do Paciente
+      <span class="sep">·</span> IA para Médicos
+    </p>
+    <p class="mono registro">CRM-CE 10.695 · RQE 14.411 (Anestesiologia)</p>
+    <Capno class="capno" />
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: grid;
+    align-items: center;
+    overflow: hidden;
+  }
+  .poster,
+  .cena {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .poster {
+    object-fit: cover;
+    opacity: 0.9;
+  }
+  .cena :global(.campo-respiratorio) {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.4s var(--ease-out-long);
+  }
+  .cena :global(.campo-respiratorio.pronto) {
+    opacity: 1;
+  }
+  .conteudo {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    padding-block: var(--space-6);
+  }
+  .eyebrow {
+    margin-bottom: var(--space-3);
+  }
+  h1 {
+    font-size: var(--step-5);
+    font-weight: 640;
+    letter-spacing: -0.022em;
+    line-height: 0.98;
+    max-width: 10ch;
+  }
+  .acento {
+    color: var(--gold);
+  }
+  .triade {
+    margin-top: var(--space-3);
+    font-size: var(--step-1);
+    font-weight: 420;
+    color: var(--text-2);
+    max-width: 40ch;
+    text-wrap: balance;
+  }
+  .sep {
+    color: var(--mist);
+    padding-inline: 0.2em;
+  }
+  .registro {
+    margin-top: var(--space-1);
+    letter-spacing: 0.1em;
+    text-transform: none;
+  }
+  .capno {
+    margin-top: var(--space-5);
+    width: min(520px, 72vw);
+    height: auto;
+  }
+</style>

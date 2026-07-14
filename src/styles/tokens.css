@@ -1,0 +1,56 @@
+/*
+  Design tokens — Paleta A (decisão do Gate 0)
+  Conceito: "precisão que respira" — contenção clínica no hub, calor de papel nas crônicas.
+  Acento racionado: no máximo 3 usos por tela (decisão da revisão do Gate 0).
+*/
+:root {
+  /* cor */
+  --ink: #14171C;             /* grafite profundo — fundo do hub */
+  --bone: #EDE8DD;            /* osso — modo papel das crônicas */
+  --gold: #B08D3E;            /* ouro envelhecido — acento único (5.75:1 sobre --ink) */
+  --navy: #24344D;            /* azul profundo — reservado; em superfícies usar --surface */
+  --mist: #8A94A6;            /* neutro para metadados (5.87:1 sobre --ink) */
+
+  /* derivados verificados (WCAG AA) */
+  --surface: color-mix(in srgb, var(--navy) 62%, var(--ink));       /* navy contido: elevação, não cor */
+  --text: #F2F0EC;                                                  /* 15.78:1 sobre --ink */
+  --text-2: #C6CBD3;                                                /* 11.02:1 sobre --ink */
+  --ink-on-bone: #221E17;                                           /* 13.58:1 sobre --bone */
+  --gold-on-bone: color-mix(in srgb, var(--gold) 58%, var(--ink-on-bone)); /* 5.08:1 sobre --bone */
+  --mist-on-bone: color-mix(in srgb, var(--ink-on-bone) 70%, var(--bone)); /* 5.54:1 sobre --bone */
+  --line: color-mix(in srgb, var(--mist) 22%, transparent);         /* bordas discretas no hub */
+
+  /* tipografia — 3 papéis */
+  --font-display: 'Schibsted Grotesk Variable', system-ui, sans-serif;
+  --font-editorial: 'Fraunces Variable', Georgia, serif;
+  --font-mono: 'Geist Mono', ui-monospace, 'SFMono-Regular', monospace;
+
+  /* escala tipográfica fluida */
+  --step--1: clamp(0.72rem, 0.70rem + 0.10vw, 0.78rem);   /* piso do mono: nunca abaixo de 11.5px */
+  --step-0: clamp(1.00rem, 0.96rem + 0.20vw, 1.13rem);
+  --step-1: clamp(1.19rem, 1.13rem + 0.30vw, 1.38rem);
+  --step-2: clamp(1.50rem, 1.37rem + 0.66vw, 1.94rem);
+  --step-3: clamp(1.88rem, 1.62rem + 1.28vw, 2.72rem);
+  --step-4: clamp(2.34rem, 1.88rem + 2.30vw, 3.86rem);
+  --step-5: clamp(2.93rem, 2.13rem + 4.00vw, 5.55rem);
+
+  /* espaçamento */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6.5rem;
+  --gutter: clamp(1.25rem, 4vw, 3rem);
+  --max-width: 1280px;
+
+  /* movimento — disciplina: ousadia só na assinatura */
+  --ease-out-long: cubic-bezier(0.22, 1, 0.36, 1);
+  --dur-fast: 180ms;
+  --dur-slow: 600ms;
+
+  /* raios: geometria clínica, nada de pill */
+  --radius-s: 3px;
+  --radius-m: 6px;
+  --radius-l: 10px;
+}

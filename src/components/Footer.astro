@@ -1,0 +1,44 @@
+---
+/*
+  Footer de compliance — obrigatório em todas as páginas (decisões do Gate 0:
+  CNPJ incluído desde já). Publicidade médica conforme Resolução CFM 2.336/2023.
+*/
+const ano = new Date().getFullYear();
+---
+
+<footer class="rodape">
+  <div class="container conteudo">
+    <p class="identificacao">
+      Artur da Costa Milach Júnior · CRM-CE 10.695 · RQE 14.411 (Anestesiologia)
+    </p>
+    <p class="juridico">
+      Artur da C. M. Junior LTDA · CNPJ 59.169.766/0001-47
+    </p>
+    <p class="juridico">
+      Publicidade médica em conformidade com a Resolução CFM 2.336/2023 · © {ano}
+    </p>
+  </div>
+</footer>
+
+<style>
+  .rodape {
+    border-top: 1px solid var(--line);
+    padding-block: var(--space-4);
+    margin-top: auto;
+  }
+  .conteudo {
+    display: grid;
+    gap: var(--space-1);
+  }
+  .identificacao,
+  .juridico {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.06em;
+    color: var(--mist);
+    line-height: 1.9;
+  }
+  .identificacao {
+    color: var(--text-2);
+  }
+</style>

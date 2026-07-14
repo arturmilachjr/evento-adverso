@@ -1,0 +1,69 @@
+---
+const rotas = [
+  { href: '/obras', rotulo: 'Obras' },
+  { href: '/cronicas', rotulo: 'Crônicas' },
+  { href: '/sobre', rotulo: 'Sobre' },
+];
+const atual = Astro.url.pathname;
+---
+
+<header class="cabecalho">
+  <div class="container barra">
+    <a href="/" class="marca" aria-label="Início — Artur Milach">Artur Milach</a>
+    <nav aria-label="Navegação principal">
+      <ul>
+        {
+          rotas.map(({ href, rotulo }) => (
+            <li>
+              <a
+                href={href}
+                class="item"
+                aria-current={atual.startsWith(href) ? 'page' : undefined}
+              >
+                {rotulo}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .cabecalho {
+    position: absolute;
+    inset-inline: 0;
+    top: 0;
+    z-index: 10;
+  }
+  .barra {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-block: var(--space-3);
+  }
+  .marca {
+    font-weight: 620;
+    letter-spacing: -0.015em;
+    font-size: var(--step-1);
+  }
+  ul {
+    display: flex;
+    gap: var(--space-3);
+    list-style: none;
+    padding: 0;
+  }
+  .item {
+    font-family: var(--font-mono);
+    font-size: var(--step--1);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--text-2);
+    transition: color var(--dur-fast) ease;
+  }
+  .item:hover,
+  .item[aria-current='page'] {
+    color: var(--text);
+  }
+</style>

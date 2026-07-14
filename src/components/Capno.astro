@@ -1,0 +1,29 @@
+---
+/*
+  Traço capnográfico — motivo gráfico secundário do site.
+  Morfologia correta: fase II (subida expiratória íngreme), fase III (platô
+  alveolar levemente ascendente) terminando no pico end-tidal, queda
+  inspiratória quase vertical. Três ciclos com variação sutil.
+*/
+interface Props {
+  class?: string;
+  color?: string;
+}
+const { class: className, color = 'var(--gold)' } = Astro.props;
+---
+
+<svg
+  class={className}
+  viewBox="0 0 560 44"
+  fill="none"
+  aria-hidden="true"
+  preserveAspectRatio="xMinYMid meet"
+>
+  <path
+    d="M0 36 H30 L42 15 L124 11 L131 36 H162 L174 16 L256 10 L263 36 H294 L306 15 L390 12 L397 36 H560"
+    stroke={color}
+    stroke-width="1.6"
+    stroke-linejoin="round"
+    stroke-linecap="round"
+  ></path>
+</svg>

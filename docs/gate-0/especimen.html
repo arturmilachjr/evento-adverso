@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Gate 0 — Espécime visual · arturmilach.com.br</title>
+<style>
+  @font-face {
+    font-family: 'Schibsted Grotesk';
+    src: url('node_modules/@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2') format('woff2');
+    font-weight: 400 900;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    src: url('node_modules/@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2') format('woff2');
+    font-weight: 100 900;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Fraunces';
+    src: url('node_modules/@fontsource-variable/fraunces/files/fraunces-latin-opsz-italic.woff2') format('woff2');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist Mono';
+    src: url('node_modules/geist/dist/fonts/geist-mono/GeistMono-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'Geist Mono';
+    src: url('node_modules/geist/dist/fonts/geist-mono/GeistMono-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+  body { background: #0B0C0E; font-family: 'Schibsted Grotesk', sans-serif; }
+
+  /* ---------- tokens por paleta ---------- */
+  .paleta-a {
+    --ink:  #14171C;
+    --surface: #24344D;      /* navy */
+    --accent: #B08D3E;       /* ouro envelhecido */
+    --mist: #8A94A6;
+    --bone: #EDE8DD;
+    --ink-on-bone: #221E17;
+  }
+  .paleta-b {
+    --ink:  #16181B;
+    --surface: #22262B;      /* grafite 2 */
+    --accent: #9A6A4F;       /* cobre oxidado */
+    --mist: #969CA4;
+    --bone: #ECE9E3;
+    --ink-on-bone: #201D19;
+  }
+
+  /* ---------- moldura do espécime ---------- */
+  .cabecalho {
+    padding: 28px 48px;
+    border-bottom: 1px solid #23262B;
+    display: flex; justify-content: space-between; align-items: baseline;
+  }
+  .cabecalho .rotulo { font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: .14em; color: #6E7681; }
+  .cabecalho .rotulo strong { color: #C9CED6; font-weight: 500; }
+
+  .bloco { padding: 56px 48px 72px; }
+  .bloco + .bloco { border-top: 1px solid #23262B; }
+
+  .titulo-paleta {
+    font-family: 'Geist Mono', monospace; font-size: 13px; letter-spacing: .18em;
+    color: #C9CED6; margin-bottom: 6px;
+  }
+  .subtitulo-paleta { font-size: 15px; color: #6E7681; margin-bottom: 28px; max-width: 62ch; line-height: 1.5; }
+
+  /* ---------- swatches ---------- */
+  .swatches { display: flex; gap: 10px; margin-bottom: 28px; flex-wrap: wrap; }
+  .swatch { width: 148px; border: 1px solid #2A2E34; border-radius: 6px; overflow: hidden; }
+  .swatch .cor { height: 64px; }
+  .swatch .meta { padding: 8px 10px; background: #101216; font-family: 'Geist Mono', monospace; font-size: 10.5px; color: #8A9099; letter-spacing: .06em; line-height: 1.7; }
+  .swatch .meta b { color: #C9CED6; font-weight: 500; display: block; }
+
+  /* ---------- mini-hero ---------- */
+  .hero {
+    background: var(--ink);
+    border: 1px solid #2A2E34; border-radius: 10px;
+    padding: 72px 72px 64px;
+    position: relative; overflow: hidden;
+  }
+  .hero .eyebrow {
+    font-family: 'Geist Mono', monospace; font-size: 12px; letter-spacing: .16em;
+    color: var(--mist); margin-bottom: 28px;
+  }
+  .hero h1 {
+    font-size: 92px; font-weight: 640; letter-spacing: -0.022em; line-height: 0.98;
+    color: #F2F0EC; max-width: 10ch;
+  }
+  .hero h1 .fim { color: var(--accent); }
+  .hero .triade {
+    margin-top: 26px; font-size: 19px; font-weight: 420; color: #C6CBD3; letter-spacing: .002em;
+  }
+  .hero .triade .sep { color: var(--mist); padding: 0 .45em; }
+  .hero .registro {
+    margin-top: 12px; font-family: 'Geist Mono', monospace; font-size: 12.5px;
+    letter-spacing: .1em; color: var(--mist);
+  }
+  .hero .capno { margin-top: 44px; display: block; }
+  .hero .capno path { stroke: var(--accent); stroke-width: 1.6; fill: none; stroke-linejoin: round; stroke-linecap: round; }
+  .hero .manifesto {
+    margin-top: 40px; font-size: 30px; font-weight: 470; line-height: 1.32;
+    color: #E9E6E0; max-width: 34ch; letter-spacing: -0.008em;
+  }
+
+  /* ---------- linha de cards ---------- */
+  .cartoes { display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; margin-top: 20px; }
+
+  .obra {
+    background: var(--surface);
+    border: 1px solid color-mix(in srgb, var(--mist) 22%, transparent);
+    border-radius: 10px; padding: 30px 32px 28px;
+    display: flex; flex-direction: column; min-height: 300px;
+  }
+  /* navy contido: no card, a superfície lê como elevação, não como cor */
+  .paleta-a .obra { background: color-mix(in srgb, var(--surface) 62%, var(--ink)); }
+  .obra .tags { display: flex; gap: 8px; }
+  .obra .tag {
+    font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: .12em;
+    color: var(--mist); border: 1px solid color-mix(in srgb, var(--mist) 38%, transparent);
+    padding: 5px 10px; border-radius: 3px;
+  }
+  .obra .capa {
+    flex: 1; margin: 24px 0; border-radius: 6px;
+    background: linear-gradient(160deg, color-mix(in srgb, var(--ink) 62%, var(--surface)) 0%, var(--ink) 90%);
+    border: 1px solid color-mix(in srgb, var(--mist) 18%, transparent);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: .12em; color: var(--mist);
+  }
+  .obra h3 { color: #F0EEE9; font-size: 24px; font-weight: 560; letter-spacing: -0.012em; }
+  .obra .meta-obra { margin-top: 8px; font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: .1em; color: var(--mist); }
+
+  .cronica {
+    background: var(--bone); border-radius: 10px; padding: 34px 38px 30px;
+    color: var(--ink-on-bone); min-height: 300px; display: flex; flex-direction: column;
+  }
+  .cronica .eyebrow-c {
+    font-family: 'Geist Mono', monospace; font-size: 11.5px; letter-spacing: .16em;
+    color: color-mix(in srgb, var(--ink-on-bone) 70%, var(--bone)); margin-bottom: 18px;
+  }
+  .cronica h3 {
+    font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 72;
+    font-size: 30px; font-weight: 540; letter-spacing: -0.01em; margin-bottom: 14px;
+  }
+  .cronica p {
+    font-family: 'Fraunces', serif; font-variation-settings: 'opsz' 18;
+    font-size: 17.5px; line-height: 1.62; font-weight: 400;
+    color: color-mix(in srgb, var(--ink-on-bone) 88%, var(--bone));
+  }
+  .cronica p::first-letter {
+    font-size: 3.1em; float: left; line-height: .82; padding: .06em .12em 0 0;
+    font-weight: 560; color: color-mix(in srgb, var(--accent) 58%, var(--ink-on-bone));
+  }
+  @supports (initial-letter: 2) {
+    .cronica p::first-letter {
+      float: none; font-size: unset; line-height: unset;
+      initial-letter: 2; padding: 0 .14em 0 0;
+    }
+  }
+  .cronica .assinatura {
+    margin-top: auto; padding-top: 22px;
+    font-family: 'Fraunces', serif; font-style: italic; font-size: 15px;
+    color: color-mix(in srgb, var(--ink-on-bone) 62%, var(--bone));
+  }
+
+  .rodape-nota {
+    padding: 26px 48px 40px; font-family: 'Geist Mono', monospace; font-size: 11px;
+    letter-spacing: .08em; color: #565C64; line-height: 2; border-top: 1px solid #23262B;
+  }
+</style>
+</head>
+<body>
+
+  <div class="cabecalho">
+    <span class="rotulo"><strong>ARTURMILACH.COM.BR</strong> · GATE 0 · ESPÉCIME VISUAL</span>
+    <span class="rotulo">PALETA A × PALETA B · TIPOGRAFIA</span>
+  </div>
+
+  <!-- ================= PALETA A ================= -->
+  <section class="bloco paleta-a">
+    <div class="titulo-paleta">PALETA A — GRAFITE · OSSO · OURO ENVELHECIDO · NAVY</div>
+    <p class="subtitulo-paleta">Quatro papéis cromáticos: fundo grafite profundo, superfícies em navy contido, acento único em ouro envelhecido, papel osso para as crônicas. Mais quente e com maior amplitude tonal.</p>
+
+    <div class="swatches">
+      <div class="swatch"><div class="cor" style="background:#14171C"></div><div class="meta"><b>--ink</b>#14171C · fundo do hub</div></div>
+      <div class="swatch"><div class="cor" style="background:#24344D"></div><div class="meta"><b>--navy</b>#24344D · superfícies</div></div>
+      <div class="swatch"><div class="cor" style="background:#B08D3E"></div><div class="meta"><b>--gold</b>#B08D3E · acento único</div></div>
+      <div class="swatch"><div class="cor" style="background:#8A94A6"></div><div class="meta"><b>--mist</b>#8A94A6 · metadados</div></div>
+      <div class="swatch"><div class="cor" style="background:#EDE8DD"></div><div class="meta"><b>--bone</b>#EDE8DD · modo papel</div></div>
+    </div>
+
+    <div class="hero">
+      <div class="eyebrow">MEDICINA · SISTEMAS · ESCRITA</div>
+      <h1>Artur <span class="fim">Milach</span></h1>
+      <div class="triade">Anestesiologista<span class="sep">·</span>Segurança do Paciente<span class="sep">·</span>IA para Médicos</div>
+      <div class="registro">CRM-CE 10.695 · RQE 14.411 (ANESTESIOLOGIA)</div>
+      <svg class="capno" width="560" height="44" viewBox="0 0 560 44" aria-hidden="true">
+        <path d="M0 36 H30 L42 15 L124 11 L131 36 H162 L174 16 L256 10 L263 36 H294 L306 15 L390 12 L397 36 H560"/>
+      </svg>
+      <p class="manifesto">Vinte anos vigiando sinais vitais. Agora, também desenho os sistemas que vigiam comigo.</p>
+    </div>
+
+    <div class="cartoes">
+      <div class="obra">
+        <div class="tags"><span class="tag">WEBGL</span></div>
+        <div class="capa">CAPA DA OBRA — SCREENSHOT</div>
+        <h3>Barcos</h3>
+        <div class="meta-obra">OBRA · 2026 · ABRIR EXPERIÊNCIA</div>
+      </div>
+      <div class="cronica">
+        <div class="eyebrow-c">CRÔNICA · III</div>
+        <h3>A toalha atrás da porta</h3>
+        <p>Ninguém repara na toalha atrás da porta até o dia em que ela cai. Assim também são os pequenos rituais que sustentam uma casa — e uma sala de cirurgia.</p>
+        <div class="assinatura">— Kaizen · Fortaleza, CE</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PALETA B ================= -->
+  <section class="bloco paleta-b">
+    <div class="titulo-paleta">PALETA B — MONOCROMÁTICA GRAFITE · COBRE OXIDADO</div>
+    <p class="subtitulo-paleta">Escala única de grafites, sem azul: superfícies são grafite elevado. Acento em cobre oxidado, mais terroso e contido. Menos cor, mais matéria.</p>
+
+    <div class="swatches">
+      <div class="swatch"><div class="cor" style="background:#16181B"></div><div class="meta"><b>--ink</b>#16181B · fundo do hub</div></div>
+      <div class="swatch"><div class="cor" style="background:#22262B"></div><div class="meta"><b>--carbon</b>#22262B · superfícies</div></div>
+      <div class="swatch"><div class="cor" style="background:#9A6A4F"></div><div class="meta"><b>--copper</b>#9A6A4F · acento único</div></div>
+      <div class="swatch"><div class="cor" style="background:#969CA4"></div><div class="meta"><b>--mist</b>#969CA4 · metadados</div></div>
+      <div class="swatch"><div class="cor" style="background:#ECE9E3"></div><div class="meta"><b>--bone</b>#ECE9E3 · modo papel</div></div>
+    </div>
+
+    <div class="hero">
+      <div class="eyebrow">MEDICINA · SISTEMAS · ESCRITA</div>
+      <h1>Artur <span class="fim">Milach</span></h1>
+      <div class="triade">Anestesiologista<span class="sep">·</span>Segurança do Paciente<span class="sep">·</span>IA para Médicos</div>
+      <div class="registro">CRM-CE 10.695 · RQE 14.411 (ANESTESIOLOGIA)</div>
+      <svg class="capno" width="560" height="44" viewBox="0 0 560 44" aria-hidden="true">
+        <path d="M0 36 H30 L42 15 L124 11 L131 36 H162 L174 16 L256 10 L263 36 H294 L306 15 L390 12 L397 36 H560"/>
+      </svg>
+      <p class="manifesto">Vinte anos vigiando sinais vitais. Agora, também desenho os sistemas que vigiam comigo.</p>
+    </div>
+
+    <div class="cartoes">
+      <div class="obra">
+        <div class="tags"><span class="tag">WEBGL</span></div>
+        <div class="capa">CAPA DA OBRA — SCREENSHOT</div>
+        <h3>Barcos</h3>
+        <div class="meta-obra">OBRA · 2026 · ABRIR EXPERIÊNCIA</div>
+      </div>
+      <div class="cronica">
+        <div class="eyebrow-c">CRÔNICA · III</div>
+        <h3>A toalha atrás da porta</h3>
+        <p>Ninguém repara na toalha atrás da porta até o dia em que ela cai. Assim também são os pequenos rituais que sustentam uma casa — e uma sala de cirurgia.</p>
+        <div class="assinatura">— Kaizen · Fortaleza, CE</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="rodape-nota">
+    NOTAS · Display: Schibsted Grotesk · Editorial: Fraunces (variável, eixo óptico) · Mono: Geist Mono · Texto da crônica e frase do manifesto são amostras ilustrativas · Traço capnográfico: motivo gráfico secundário (divisores e progresso de leitura)
+  </div>
+
+</body>
+</html>
