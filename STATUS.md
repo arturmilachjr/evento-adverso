@@ -1,11 +1,11 @@
 # STATUS — máquina de estados do projeto
 
-**Fase atual: 1 — Fundação (em execução, gate pendente)**
+**Fase atual: 1 — Fundação (gate apresentado, aguardando `APROVADO FASE 1`)**
 
 | Fase | Estado | Gate |
 |---|---|---|
 | 0 — Intake e decisões | ✅ CONCLUÍDA | `APROVADO FASE 0` (14/07/2026) |
-| 1 — Fundação | 🔧 EM EXECUÇÃO | aguardando pacote de gate |
+| 1 — Fundação | 🔎 GATE APRESENTADO | verificado: 6,0 ciclos/min; reduced-motion ok; JS inicial ~69KB gzip; chunk 3D 233KB gzip |
 | 2 — Home completa | ⏸ pendente | — |
 | 3 — Galeria /obras | ⏸ pendente | bloqueada por assets do `_inbox/` |
 | 4 — Crônicas | ⏸ pendente | bloqueada por assets do `_inbox/` |
@@ -23,6 +23,11 @@
 
 - Manifesto "Vinte anos vigiando sinais vitais": confirmar tempo exato de prática com o Artur antes do go-live (CFM 2.336/2023 exige veracidade).
 - 404: evitar capnografia em linha reta (apneia/parada como piada); default proposto = traço que perde amplitude e se recompõe ao hover. Decisão fina no Gate 5.
+
+## Pendência de infraestrutura
+
+- **Deploy de preview na Vercel bloqueado**: o token da integração desta sessão não tem permissão para criar projetos no time `arturmilachjr-6835s-projects` (HTTP 403). Caminho recomendado: Artur importa o repositório `arturmilachjr/evento-adverso` no painel da Vercel (Add New → Project) — cria o projeto e ativa deploy automático a cada push. O build local passa e o site funciona no preview local.
+- Repositório nasceu vazio: a branch `claude/artur-milach-portfolio-uwukj6` virou a default no primeiro push; não há branch base para abrir PR.
 
 ## Pendências de assets (entregar em `_inbox/` no GitHub)
 
